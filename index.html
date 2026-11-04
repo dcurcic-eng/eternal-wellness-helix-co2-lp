@@ -1669,41 +1669,9 @@ setTimeout(function () {
         <p>We reply the same business day. No card, no obligation.</p>
       </div>
 
-      <form id="consultForm" novalidate>
-        <div class="frow" style="margin-bottom:34px">
-          <div class="field">
-            <label for="fn">FIRST NAME</label>
-            <input id="fn" name="first_name" type="text" placeholder="Jordan" autocomplete="given-name" required>
-          </div>
-          <div class="field">
-            <label for="ln">LAST NAME</label>
-            <input id="ln" name="last_name" type="text" placeholder="Whitaker" autocomplete="family-name" required>
-          </div>
-        </div>
-
-        <div class="frow" style="margin-bottom:34px">
-          <div class="field">
-            <label for="ph">PHONE</label>
-            <input id="ph" name="phone" type="tel" placeholder="(231) 555-0148" autocomplete="tel" required>
-          </div>
-          <div class="field">
-            <label for="em">EMAIL</label>
-            <input id="em" name="email" type="email" placeholder="you@email.com" autocomplete="email" required>
-          </div>
-        </div>
-
-        <div class="field" style="margin-bottom:34px">
-          <label for="tr">WHAT WOULD YOU LIKE TO TREAT</label>
-          <input id="tr" name="treat" type="text"
-                 placeholder="Fine lines · Sun damage · Acne scarring · Texture">
-        </div>
-
-        <button class="btn btn--clay ct__submit" type="submit">
-          <span class="btn__inner"><span class="btn__wipe"></span><span class="btn__label">Claim my $500 off</span></span>
-        </button>
-
-        <p class="ct__consent" style="margin-top:22px">By submitting you agree to be contacted by Eternal Wellness Medical Spa about your consultation. We never share your information.</p>
-      </form>
+      <iframe src="https://api.aevadigital.com/api/v1/forms/596/form-view/" title="Request your free consultation" width="100%"
+              onload="onPageLoad('production')" id="myFormEmbed" frameborder="0" style="display:block;border:0"></iframe>
+      <script type="text/javascript" src="https://aeva-static-bucket.s3.amazonaws.com/static/js/embedAevaScript.js"></script>
     </div>
 
     <div class="ct__side">
@@ -2045,24 +2013,6 @@ setTimeout(function () {
       }
       if (hasGsap) ScrollTrigger.refresh();
       quizResult.focus({ preventScroll: true });
-    });
-  }
-
-  /* ============================================================
-     E. CONTACT FORM  (front-end only, no endpoint wired yet)
-     ============================================================ */
-  var consultForm = document.getElementById("consultForm");
-  if (consultForm) {
-    consultForm.querySelectorAll("input, select").forEach(function (f) {
-      f.addEventListener("focus", function () { f.closest(".field").classList.add("is-focused"); });
-      f.addEventListener("blur",  function () { f.closest(".field").classList.remove("is-focused"); });
-    });
-    consultForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!consultForm.checkValidity()) { consultForm.reportValidity(); return; }
-      var label = consultForm.querySelector('button[type="submit"] .btn__label');
-      label.textContent = "Thank you, we reply the same business day";
-      consultForm.querySelector('button[type="submit"]').disabled = true;
     });
   }
 
